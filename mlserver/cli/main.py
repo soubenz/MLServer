@@ -31,14 +31,12 @@ def root():
 
 
 @root.command("start")
-@click.argument("folder", nargs=1)
 @click_async
-async def start(folder: str):
+async def start():
     """
     Start serving a machine learning model with MLServer.
     """
-    settings, models = await load_settings(folder)
-
+    settings, models = await load_settings()
     server = MLServer(settings)
     await server.start(models)
 
@@ -52,7 +50,8 @@ async def build(folder: str, tag: str):
     Build a Docker image for a custom MLServer runtime.
     """
     dockerfile = generate_dockerfile()
-    build_image(folder, dockerfile, tag)
+    logger.info(dockerfile)
+    # build_image(folder, dockerfile, tag)
     logger.info(f"Successfully built custom Docker image with tag {tag}")
 
 
