@@ -115,7 +115,9 @@ class ModelSettings(BaseSettings):
 
     """Name of the model."""
     name: str = ""
-
+    owner: str
+    description: Optional[str]
+    tags: Optional[List[str]]
     # Model metadata
     """Framework used to train and serialise the model (e.g. sklearn)."""
     platform: str = ""
@@ -149,3 +151,4 @@ class ModelSettings(BaseSettings):
     # However, it's also possible to override them manually.
     """Extra parameters for each instance of this model."""
     parameters: Optional[ModelParameters] = None
+
