@@ -31,25 +31,24 @@ class Endpoints:
         is_ready = await self._data_plane.ready()
         return Response(status_code=to_status_code(is_ready))
 
-    async def model_ready(self, model_name: str, model_version: str = None) -> Response:
-        is_ready = await self._data_plane.model_ready(model_name, model_version)
+    async def model_ready(self, model_name: str) -> Response:
+        is_ready = await self._data_plane.model_ready(model_name)
         return Response(status_code=to_status_code(is_ready))
 
     async def metadata(self) -> MetadataServerResponse:
         return await self._data_plane.metadata()
 
     async def model_metadata(
-        self, model_name: str, model_version: str = None
+        self, model_name: str
     ) -> MetadataModelResponse:
-        return await self._data_plane.model_metadata(model_name, model_version)
+        return await self._data_plane.model_metadata(model_name)
 
     async def infer(
         self,
         payload: InferenceRequest,
-        model_name: str,
-        model_version: str = None,
+        model_name: str
     ) -> InferenceResponse:
-        return await self._data_plane.infer(payload, model_name, model_version)
+        return await self._data_plane.infer(payload, model_name)
 
 
 class ModelRepositoryEndpoints:
