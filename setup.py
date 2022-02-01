@@ -46,6 +46,10 @@ setup(
         "uvicorn",
         "starlette_exporter",
         "py-grpc-prometheus",
+        "cloudpathlib",
+        "tortoise-orm",
+        "fastapi_users",
+        
     ],
     extras_require={"all": ["orjson"]},
     entry_points={"console_scripts": ["mlserver=mlserver.cli:main"]},
