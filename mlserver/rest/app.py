@@ -40,39 +40,39 @@ def create_app(
     routes = [
         # Model ready
         APIRoute(
-            "/v2/models/{model_name}/ready",
+            "/models/{model_name}/ready",
             endpoints.model_ready,
         ),
-        APIRoute(
-            "/v2/models/{model_name}/versions/{model_version}/ready",
-            endpoints.model_ready,
-        ),
+        # APIRoute(
+        #     "/models/{model_name}/versions/{model_version}/ready",
+        #     endpoints.model_ready,
+        # ),
         # Model infer
         APIRoute(
-            "/v2/models/{model_name}/infer",
+            "/models/{model_name}/infer",
             endpoints.infer,
             methods=["POST"],
         ),
-        APIRoute(
-            "/v2/models/{model_name}/versions/{model_version}/infer",
-            endpoints.infer,
-            methods=["POST"],
-        ),
+        # APIRoute(
+        #     "/models/{model_name}/versions/{model_version}/infer",
+        #     endpoints.infer,
+        #     methods=["POST"],
+        # ),
         # Model metadata
         APIRoute(
-            "/v2/models/{model_name}",
+            "/models/{model_name}",
             endpoints.model_metadata,
         ),
-        APIRoute(
-            "/v2/models/{model_name}/versions/{model_version}",
-            endpoints.model_metadata,
-        ),
+        # APIRoute(
+        #     "/models/{model_name}/versions/{model_version}",
+        #     endpoints.model_metadata,
+        # ),
         # Liveness and readiness
-        APIRoute("/v2/health/live", endpoints.live),
-        APIRoute("/v2/health/ready", endpoints.ready),
+        APIRoute("/health/live", endpoints.live),
+        APIRoute("/health/ready", endpoints.ready),
         # Server metadata
         APIRoute(
-            "/v2",
+            "/",
             endpoints.metadata,
         ),
     ]
@@ -80,17 +80,17 @@ def create_app(
     routes += [
         # Model Repository API
         APIRoute(
-            "/v2/repository/index",
+            "/models/list",
             model_repository_endpoints.index,
             methods=["POST"],
         ),
         APIRoute(
-            "/v2/repository/models/{model_name}/load",
+            "/models/{model_name}/load",
             model_repository_endpoints.load,
             methods=["POST"],
         ),
         APIRoute(
-            "/v2/repository/models/{model_name}/unload",
+            "/models/{model_name}/unload",
             model_repository_endpoints.unload,
             methods=["POST"],
         ),
@@ -119,7 +119,7 @@ def create_app(
         app_name="mlserver",
         prefix="rest_server",
         # TODO: Should we also exclude model's health endpoints?
-        skip_paths=["/metrics", "/v2/health/live", "/v2/health/ready"],
+        skip_paths=["/metrics", "/health/live", "/health/ready"],
     )
     app.add_route("/metrics", handle_metrics)
 
