@@ -3,12 +3,14 @@ import sys
 
 from typing import List, Tuple, Union
 
+from ..storage import get_models_storage
 from ..model import MLModel
 from ..repository import ModelRepository
 from ..settings import Settings, ModelSettings
 from cloudpathlib import CloudPath
 from pathlib import Path
- 
+from google.cloud import storage
+import os
 DEFAULT_SETTINGS_FILENAME = "settings.json"
 
 
@@ -18,19 +20,8 @@ async def load_settings() -> Tuple[Settings, List[MLModel]]:
     """
     # NOTE: Insert current directory and model folder into syspath to load
     # specified model.
-    sys.path.insert(0, ".")
-    from google.cloud import storage
-    import os
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="my_key.json"
-    client = storage.Client()
-    # bucket = client.get_bucket('users_artifacts')
-    root_dir = CloudPath("gs://users_artifacts/string")
-    for f in root_dir.glob('/**/**/**.*'):
-        print(f)
-    # print(list(root_dir.glob('/**/**')))
-    # reactivate
-    root_dir.copytree('/tmp/models')
-    # return
+
+    # t = await get_models_storage()
 
 
     # if folder:
