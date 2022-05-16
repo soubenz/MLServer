@@ -28,7 +28,7 @@ def _load_description() -> str:
 setup(
     name=PKG_NAME,
     version=_load_version(),
-    url="https://github.com/SeldonIO/MLServer.git",
+    # url="https://github.com/SeldonIO/MLServer.git",
     author="Seldon Technologies Ltd.",
     author_email="hello@seldon.io",
     description="ML server",
