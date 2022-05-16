@@ -82,7 +82,8 @@ class RequestInput(BaseModel):
 
 class MetadataModelResponse(BaseModel):
     name: str
-    versions: Optional[List[str]] = None
+    # versions: Optional[List[str]] = None
+    version : str = 1
     platform: str
     inputs: Optional[List["MetadataTensor"]] = None
     outputs: Optional[List["MetadataTensor"]] = None
