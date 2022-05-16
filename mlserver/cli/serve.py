@@ -36,7 +36,8 @@ async def load_settings() -> Tuple[Settings, List[MLModel]]:
 
     # if folder is not None:
     settings.model_repository_root = '/tmp/models'
-
+    settings.server_name = "douce.io"
+    settings.server_version = "0.1.0a"
     models = []
     # if settings.load_models_at_startup:
     repository = ModelRepository('/tmp/models')
